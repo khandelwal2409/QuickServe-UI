@@ -1,6 +1,19 @@
-// basic spec placeholder
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+
 describe('AppComponent', () => {
-  it('placeholder', () => {
-    expect(true).toBe(true);
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [AppComponent]
+    }).compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
   });
 });

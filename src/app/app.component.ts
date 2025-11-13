@@ -1,14 +1,21 @@
 import { Component } from '@angular/core';
 
+import { UploadComponent } from './upload/upload.component';
+import { MenuListComponent } from './menu/menu-list.component';
+import { LoginComponent } from './login/login.component';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-root',
-  template: `
-    <div class="container">
-      <h1>QuickServe - Admin</h1>
-      <app-upload></app-upload>
-      <app-menu-list></app-menu-list>
-    </div>
-  `,
+  standalone: true,
+  imports: [CommonModule, UploadComponent, MenuListComponent, LoginComponent],
+  templateUrl: './app.component.html',
   styles: [`.container { padding: 16px; font-family: Arial, sans-serif }`]
 })
-export class AppComponent { }
+export class AppComponent {
+  loggedIn = false;
+
+  onLogin() {
+    this.loggedIn = true;
+  }
+}

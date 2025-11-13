@@ -1,4 +1,4 @@
-Issue: Not able to push the code to repository
+Issue 1# : Not able to push the code to repository
 
 what was done earlier:
 created a new github account
@@ -86,6 +86,9 @@ git push -f
 
 ---
 
-Let me know if you'd like help checking your existing keys or switching to HTTPS with a token instead.
+ISSUE 2: Not able to run the code.
 
+asking for ng update
+
+ng update @angular/core@20 @angular/cli@20
 

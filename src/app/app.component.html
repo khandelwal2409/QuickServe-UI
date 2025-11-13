@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>QuickServe - Admin</h1>
+  <app-login *ngIf="!loggedIn" (loginSuccess)="onLogin()"></app-login>
+  <ng-container *ngIf="loggedIn">
+    <app-upload>APP upload feature</app-upload>
+    <app-menu-list>Menu item feature</app-menu-list>
+  </ng-container>
+</div>

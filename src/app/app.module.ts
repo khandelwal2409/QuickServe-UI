@@ -8,16 +8,14 @@ import { UploadComponent } from './upload/upload.component';
 import { MenuListComponent } from './menu/menu-list.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UploadComponent,
-    MenuListComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppComponent,
+    UploadComponent,
+    MenuListComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

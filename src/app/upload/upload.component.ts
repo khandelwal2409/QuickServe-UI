@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-upload',
-  template: `
-    <h2>Upload Menu (PDF)</h2>
-    <input type="file" accept="application/pdf" (change)="onFileSelected($event)" />
-    <div *ngIf="fileName">Selected: {{ fileName }}</div>
-  `
+  templateUrl: './upload.component.html',
+  imports: [CommonModule],
 })
 export class UploadComponent {
   fileName: string | null = null;
