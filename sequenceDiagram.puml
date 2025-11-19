@@ -1,0 +1,33 @@
+@startuml
+title Sequence Diagram for quickserve flow
+
+actor admin
+participant UI
+participant "Python Application" as pythonbackend
+participant "API Server" as API
+database Database
+
+
+admin -> UI: Login
+UI -> pythonbackend: POST /login
+activate pythonbackend
+pythonbackend -> API: POST /api/auth
+activate API
+API --> pythonbackend: 200 OK + token
+deactivate API
+pythonbackend --> UI: 200 OK + session
+deactivate pythonbackend
+UI -> admin: Render Welcome page.
+
+admin -> UI: Enters Existing orders menu tab
+UI -> pythonbackend: POST /displayOrders
+activate pythonbackend
+pythonbackend -> Database: fetch all the current orders
+activate Database
+Database --> pythonbackend: return orders data
+deactivate Database
+pythonbackend --> UI: 200 OK + orders data
+deactivate pythonbackend
+UI -> admin: Render Existing orders page with data.
+
+@enduml
