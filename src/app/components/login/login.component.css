@@ -1,0 +1,22 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 420px;
+}
+
+.form-group { margin-bottom: 16px }
+label { display:block; margin-bottom:6px }
+.form-input { width:100%; padding:10px; border:1px solid #ddd; border-radius:4px }
+.login-button { width:100%; padding:10px; background:#2c3e50; color:white; border:none; border-radius:4px }
+.error-container { color:#c00; margin-top:12px }
+.demo-hint { font-size:12px; color:#666; margin-top:12px }

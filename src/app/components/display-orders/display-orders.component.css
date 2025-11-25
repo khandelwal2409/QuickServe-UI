@@ -1,0 +1,6 @@
+.orders-container { padding: 16px; max-width: 800px; margin: 0 auto; }
+.order-item { border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; border-radius: 6px; }
+.order-header { display:flex; justify-content:space-between; align-items:center; }
+.status { font-size: 0.9em; color: #555; }
+.total { margin-top:8px; font-weight:600; }
+.error { color: #b00020; }

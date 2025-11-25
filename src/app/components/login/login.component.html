@@ -1,0 +1,33 @@
+<div class="login-wrapper">
+  <div class="login-container">
+    <h1>QuickServe</h1>
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Role</label>
+        <div class="role-select">
+          <label><input type="radio" formControlName="role" value="admin" /> Admin</label>
+          <label><input type="radio" formControlName="role" value="user" /> User</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Username / Email</label>
+        <input id="email" type="text" formControlName="email" class="form-input" />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">Please enter username or email</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" class="form-input" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">Password must be at least 6 characters</div>
+      </div>
+      <button type="submit" class="login-button" [disabled]="loginForm.invalid">Login</button>
+      <button type="button" class="login-button" (click)="onReset()" style="margin-top:8px; background:#eee; color:#333">Reset</button>
+    </form>
+
+    <div *ngIf="errorMessage" class="error-container">{{ errorMessage }}</div>
+    <div class="demo-hint">
+      <p><strong>Admin demo:</strong> <code>admin@example.com</code> / <code>admin123</code></p>
+      <p><strong>User demo:</strong> <code>user@example.com</code> / <code>user123</code></p>
+    </div>
+  </div>
+</div>
