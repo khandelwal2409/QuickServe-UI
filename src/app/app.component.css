@@ -1,3 +1,36 @@
+/* App Header User Info */
+.app-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 32px 0 0;
+  position: relative;
+  z-index: 10;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.user-name {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 1.1em;
+}
+.logout-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.logout-btn:hover {
+  background: #c0392b;
+}
 .login-wrapper {
   display: flex;
   justify-content: center;

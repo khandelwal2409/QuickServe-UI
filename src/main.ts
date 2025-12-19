@@ -1,5 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
+import { provideHttpClient } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
 import { LoginComponent } from './app/components/login/login.component';
 import { DisplayOrdersComponent } from './app/components/display-orders/display-orders.component';
@@ -7,10 +9,7 @@ import { DisplayMenuComponent } from './app/components/display-menu/display-menu
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter([
-      { path: '', component: LoginComponent },
-      { path: 'orders', component: DisplayOrdersComponent },
-      { path: 'menu', component: DisplayMenuComponent }
-    ])
+    provideHttpClient(),
+    provideRouter(routes)
   ]
 }).catch(err => console.error(err));

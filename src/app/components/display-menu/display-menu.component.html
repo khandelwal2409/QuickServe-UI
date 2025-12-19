@@ -1,18 +1,90 @@
 <div class="menu-container">
-  <h2>Menu</h2>
-
-  <div *ngIf="loading">Loading menu...</div>
-  <div *ngIf="error" class="error">{{ error }}</div>
-
-  <ul *ngIf="!loading && menu.length">
-    <li *ngFor="let item of menu" class="menu-item">
-      <div class="menu-row">
-        <div class="item-name">{{ item.name }}</div>
-        <div class="item-price">${{ item.price }}</div>
+  <header class="menu-header">
+    <div class="menu-header-top">
+      <h1>🍽️ Restaurant Menu</h1>
+      <div class="header-user-block">
+        <span class="user-name">👤 {{ user }}</span>
+        <button class="logout-btn" (click)="logout()">Logout</button>
       </div>
-      <div class="item-category">{{ item.category }}</div>
-    </li>
-  </ul>
+    </div>
+    <p class="menu-subtitle">Fresh ingredients, delicious flavors</p>
+  </header>
 
-  <div *ngIf="!loading && !menu.length">No menu items available.</div>
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-section">
+    <div class="spinner"></div>
+    <p>Loading delicious menu items...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-section">
+    <h3>⚠️ Unable to Load Menu</h3>
+    <p>{{ error }}</p>
+    <button (click)="loadMenu()" class="retry-button">🔄 Try Again</button>
+  </div>
+
+  <!-- Menu Display -->
+  <div *ngIf="!loading && !error && menu.length > 0" class="menu-content">
+    <!-- Tab Navigation for Categories -->
+    <div class="tab-section">
+      <div class="tab-list">
+        <button *ngFor="let category of categories.slice(0, 4)"
+                [class.active]="selectedCategory === category"
+                (click)="setSelectedCategory(category)"
+                class="tab-button">
+          {{ category }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Vertical List of Items for Selected Category -->
+    <div class="vertical-items-section">
+      <h2 class="category-title">{{ selectedCategory }}</h2>
+      <div class="vertical-list">
+        <div *ngFor="let item of getItemsByCategory(selectedCategory)" class="vertical-menu-card">
+          <div class="item-header">
+            <h3 class="item-name">{{ item.name }}</h3>
+            <span class="item-price">Rs {{ item.price }}</span>
+          </div>
+          <div class="item-details">
+            <span class="item-description">Description: {{ item.description }}</span>
+          </div>
+          <div class="cart-controls">
+            <button (click)="decreaseQuantity(item)" class="cart-btn">-</button>
+            <span class="cart-qty">{{ getQuantity(item) }}</span>
+            <button (click)="increaseQuantity(item)" class="cart-btn">+</button>
+          </div>
+        </div>
+          <div class="cart-submit-section" *ngIf="cartItems.length > 0">
+            <button (click)="sendCartToBackend()" class="retry-button">🛒 Submit Order</button>
+          </div>
+      </div>
+    </div>
+
+    <!-- Cart Button Section Below Menu -->
+    <div class="cart-section-below">
+      <button routerLink="/orders" class="view-orders-btn">View Orders</button>
+    </div>
+
+    <!-- JSON Response Debug (Collapsible) 
+    <details class="debug-section">
+      <summary>🔍 JSON Response Debug</summary>
+      <div class="debug-content">
+        <h4>📡 Backend Response</h4>
+        <div class="response-info">
+          <p><strong>URL:</strong> http://localhost:8000/api/user/menu</p>
+          <p><strong>Items Found:</strong> {{ menu.length }}</p>
+          <p><strong>Categories:</strong> {{ categories.join(', ') }}</p>
+        </div>
+        <pre class="json-display">{{ jsonResponse }}</pre>
+      </div>
+    </details>
+  </div>-->
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && menu.length === 0" class="empty-section">
+    <h3>📭 No Menu Items Available</h3>
+    <p>The menu appears to be empty. Please check back later!</p>
+    <button (click)="loadMenu()" class="retry-button">🔄 Refresh Menu</button>
+  </div>
 </div>

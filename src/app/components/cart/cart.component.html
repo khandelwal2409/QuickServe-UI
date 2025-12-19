@@ -1,0 +1,36 @@
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty.</p>
+  </div>
+  <div *ngIf="cartItems.length > 0">
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ci of cartItems">
+          <td>{{ ci.item.name }}</td>
+          <td>{{ ci.item.description }}</td>
+          <td>Rs {{ ci.item.price }}</td>
+          <td>{{ ci.quantity }}</td>
+          <td>Rs {{ ci.item.price * ci.quantity }}</td>
+          <td>
+            <button (click)="removeItem(ci)" class="remove-btn">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="cart-total">
+      <strong>Total: Rs {{ total }}</strong>
+    </div>
+    <button (click)="clearCart()" class="clear-btn">Clear Cart</button>
+  </div>
+</div>

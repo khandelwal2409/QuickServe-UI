@@ -1,0 +1,55 @@
+/* Cart Page Styles */
+.cart-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  padding: 30px 20px;
+}
+.cart-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #2c3e50;
+}
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.cart-table th, .cart-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e9ecef;
+  text-align: left;
+}
+.cart-table th {
+  background: #f8f9fa;
+  color: #3498db;
+}
+.cart-table td {
+  color: #2c3e50;
+}
+.remove-btn, .clear-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+.remove-btn:hover, .clear-btn:hover {
+  background: #c0392b;
+}
+.cart-total {
+  text-align: right;
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: #27ae60;
+}
+.empty-cart {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1em;
+}

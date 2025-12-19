@@ -41,6 +41,7 @@ export class LoginComponent {
 
       if (role === 'admin') {
         if ((email === 'admin' || email === 'admin@example.com') && password === 'admin123') {
+          localStorage.setItem('user', email);
           this.router.navigate(['/orders']);
           return;
         }
@@ -50,6 +51,7 @@ export class LoginComponent {
 
       // role === 'user'
       if ((email === 'user' || email === 'user@example.com') && password === 'user123') {
+        localStorage.setItem('user', email);
         this.router.navigate(['/menu']);
         return;
       }

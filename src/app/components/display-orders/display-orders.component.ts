@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CartComponent } from '../cart/cart.component';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -14,7 +15,7 @@ export interface Order {
 @Component({
   selector: 'app-display-orders',
   standalone: true,
-  imports: [CommonModule],
+    imports: [CommonModule, CartComponent],
   templateUrl: './display-orders.component.html',
   styleUrls: ['./display-orders.component.css']
 })
@@ -45,6 +46,7 @@ export class DisplayOrdersComponent implements OnInit {
       error: (err) => {
         this.loading = false;
         this.error = 'Failed to load orders';
+        console.error('Error loading orders:', err);
       }
     });
   }

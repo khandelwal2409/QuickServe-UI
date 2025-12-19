@@ -1,6 +1,9 @@
 <div class="orders-container">
   <h2>Existing Orders</h2>
 
+  <!-- Cart Summary Section -->
+  <app-cart></app-cart>
+
   <div *ngIf="loading">Loading orders...</div>
   <div *ngIf="error" class="error">{{ error }}</div>
 
