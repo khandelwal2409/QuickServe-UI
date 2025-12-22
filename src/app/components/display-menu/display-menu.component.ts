@@ -4,12 +4,12 @@ import { MenuService, MenuItem } from '../../services/menu.service';
 import { CartService } from '../cart/cart.service';
 import { MockCartBackendService } from '../cart/mock-cart-backend.service';
 import { CartComponent } from '../cart/cart.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-display-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './display-menu.component.html',
   styleUrls: ['./display-menu.component.css']
 })
@@ -27,10 +27,19 @@ export class DisplayMenuComponent implements OnInit {
 
   constructor(
     private menuService: MenuService,
-    private cartService: CartService,
+    public cartService: CartService,
     private mockCartBackend: MockCartBackendService,
     private router: Router
   ) {}
+  // Getter for cart total to use in template
+  get cartTotal(): number {
+    return this.cartItems.reduce((acc, ci) => acc + (ci.item.price * ci.quantity), 0);
+  }
+
+  // Public method to clear cart from template
+  clearCart() {
+    this.cartService.clearCart();
+  }
 
   logout() {
     localStorage.removeItem('user');
@@ -74,12 +83,17 @@ export class DisplayMenuComponent implements OnInit {
       data.menu.forEach((catObj: any, catIdx: number) => {
         if (catObj.items && Array.isArray(catObj.items)) {
           catObj.items.forEach((item: any, itemIdx: number) => {
+            // Parse diet field to determine veg/non-veg
+            const diet = (item.diet || '').toString().toLowerCase();
+            const isVeg = diet.includes('veg') && !diet.includes('non');
+            
             menuItems.push({
               id: item.id || item.menu_id || item.itemId || item.item_id || itemIdx + 1,
               name: item.name || item.menu_name || item.title || `Item ${itemIdx + 1}`,
               price: this.parsePrice(item.price || item.menu_price || item.cost || 0),
               category: catObj.category || item.category || item.type || 'Other',
               description: item.description || item.details || item.desc || '',
+              isVeg: isVeg
             });
           });
         }

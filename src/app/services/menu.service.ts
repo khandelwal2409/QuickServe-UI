@@ -9,6 +9,7 @@ export interface MenuItem {
   price: number;
   category?: string;
   description?: string;
+  isVeg?: boolean;
 }
 
 @Injectable({ providedIn: 'root' })

@@ -28,10 +28,8 @@
     <!-- Tab Navigation for Categories -->
     <div class="tab-section">
       <div class="tab-list">
-        <button *ngFor="let category of categories.slice(0, 4)"
-                [class.active]="selectedCategory === category"
-                (click)="setSelectedCategory(category)"
-                class="tab-button">
+        <button *ngFor="let category of categories.slice(0, 4)" [class.active]="selectedCategory === category"
+          (click)="setSelectedCategory(category)" class="tab-button">
           {{ category }}
         </button>
       </div>
@@ -43,7 +41,10 @@
       <div class="vertical-list">
         <div *ngFor="let item of getItemsByCategory(selectedCategory)" class="vertical-menu-card">
           <div class="item-header">
-            <h3 class="item-name">{{ item.name }}</h3>
+            <div class="item-name-wrapper">
+              <span class="veg-indicator" [class.non-veg]="!item.isVeg"></span>
+              <h3 class="item-name">{{ item.name }}</h3>
+            </div>
             <span class="item-price">Rs {{ item.price }}</span>
           </div>
           <div class="item-details">
@@ -55,16 +56,13 @@
             <button (click)="increaseQuantity(item)" class="cart-btn">+</button>
           </div>
         </div>
-          <div class="cart-submit-section" *ngIf="cartItems.length > 0">
-            <button (click)="sendCartToBackend()" class="retry-button">🛒 Submit Order</button>
-          </div>
+        <!-- Cart Button Section Below Menu -->
+        <div class="cart-section-below">
+          <button routerLink="/cart" class="add-to-cart-btn" [disabled]="cartItems.length === 0">View Cart</button>
+        </div>
       </div>
     </div>
 
-    <!-- Cart Button Section Below Menu -->
-    <div class="cart-section-below">
-      <button routerLink="/orders" class="view-orders-btn">View Orders</button>
-    </div>
 
     <!-- JSON Response Debug (Collapsible) 
     <details class="debug-section">
@@ -81,10 +79,10 @@
     </details>
   </div>-->
 
-  <!-- Empty State -->
-  <div *ngIf="!loading && !error && menu.length === 0" class="empty-section">
-    <h3>📭 No Menu Items Available</h3>
-    <p>The menu appears to be empty. Please check back later!</p>
-    <button (click)="loadMenu()" class="retry-button">🔄 Refresh Menu</button>
+    <!-- Empty State -->
+    <div *ngIf="!loading && !error && menu.length === 0" class="empty-section">
+      <h3>📭 No Menu Items Available</h3>
+      <p>The menu appears to be empty. Please check back later!</p>
+      <button (click)="loadMenu()" class="retry-button">🔄 Refresh Menu</button>
+    </div>
   </div>
-</div>

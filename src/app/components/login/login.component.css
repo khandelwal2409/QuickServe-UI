@@ -1,8 +1,38 @@
+
+.login-two-column {
+  display: flex;
+  min-height: 100vh;
+}
+
+.login-left {
+  flex: 1;
+  background: #2c3e50;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.restaurant-name h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.login-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7f7;
+}
+
 .login-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 60vh;
 }
 
 .login-container {
@@ -20,3 +50,17 @@ label { display:block; margin-bottom:6px }
 .login-button { width:100%; padding:10px; background:#2c3e50; color:white; border:none; border-radius:4px }
 .error-container { color:#c00; margin-top:12px }
 .demo-hint { font-size:12px; color:#666; margin-top:12px }
+
+@media (max-width: 900px) {
+  .login-two-column {
+    flex-direction: column;
+  }
+  .login-left, .login-right {
+    flex: unset;
+    width: 100%;
+    min-height: 200px;
+  }
+  .restaurant-name h1 {
+    font-size: 2rem;
+  }
+}
